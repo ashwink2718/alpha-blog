@@ -1,29 +1,27 @@
-<h1>Here are all your articles </h1>
-
-
-
-
-<table>
-	<tr>
-		<th>Title</th>
-		<th>Description</th>
-	</tr>
+<h1 align="center">Listing All Your Articles</h1>
 
 <% @articles.each do |number| %>
-	
-	<tr>
-		<td><%= number.title %></td>
-		<td><%= number.description %></td>
-		<td><%= link_to "Show", article_path(number) %></td>
-		<td><%= link_to "Edit", edit_article_path(number) %></td>
-		<td><%= link_to "Delete", article_path(number), method: :delete, data: {confirm: "Are you sure?"} %></td>
-	</tr>
+	<div class="row">
+			<div class="col-md-8">
+				<div class="well well-lg">
+					
+					<div class="article-title">
+						<%= link_to number.title,article_path(number) %>					
+					</div>
 
+					<div class="article-body">
+						<%= truncate(number.description, length: 100) %>				
+					</div>
+
+					<div class="article-actions">
+						<%= link_to "Edit This Article", edit_article_path(number), class: "btn btn-xs btn-primary" %>
+						<%= link_to "Delete This Article", article_path(number), method: :delete, 
+																						 	data: {confirm: "Are you sure?"}, 
+																						 	class: "btn btn-xs btn-danger" 
+						%>
+					</div>	
+				</div>
+		</div>
+	</div>	
 <% end %>
 
-</table>
-
-<p>
-	<%= link_to "Home", root_path %> | 
-	<%= link_to "Create New Article", new_article_path %>
-</p> 
