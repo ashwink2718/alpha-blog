@@ -10,7 +10,13 @@
 					</div>
 
 					<div class="article-body">
-						<%= truncate(number.description, length: 100) %>				
+						<%= truncate(number.description, length: 100) %>	
+
+          <div class="article-meta-details">
+            <small>Created By: <%= number.user.username if number.user %>, <%= time_ago_in_words(number.  created_at) %> ago, last updated: <%= time_ago_in_words(number.updated_at) %> ago 
+            </small>
+          </div>    
+
 					</div>
 
 					<div class="article-actions">
@@ -20,6 +26,7 @@
 																						 	class: "btn btn-xs btn-danger" 
 						%>
 					</div>	
+
 				</div>
 		</div>
 	</div>	
