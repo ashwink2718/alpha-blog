@@ -1,0 +1,31 @@
+<% obj.each do |number| %>
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="well well-lg">
+          
+          <div class="article-title">
+            <%= link_to number.title,article_path(number) %>          
+          </div>
+
+          <div class="article-body">
+            <%= truncate(number.description, length: 100) %>  
+
+          <div class="article-meta-details">
+            <small>Created By: <%= number.user.username if number.user %>, <%= time_ago_in_words(number.  created_at) %> ago, last updated: <%= time_ago_in_words(number.updated_at) %> ago 
+            </small>
+          </div>    
+
+          </div>
+
+          <div class="article-actions">
+            <%= link_to "Edit This Article", edit_article_path(number), class: "btn btn-xs btn-primary" %>
+            <%= link_to "Delete This Article", article_path(number), method: :delete, 
+                                              data: {confirm: "Are you sure?"}, 
+                                              class: "btn btn-xs btn-danger" 
+            %>
+          </div>  
+
+        </div>
+    </div>
+  </div>  
+<% end %>
